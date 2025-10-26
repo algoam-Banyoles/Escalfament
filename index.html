@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2e7d32">
+    <meta name="description" content="Aplicació per practicar els 5 minuts d'escalfament de billar a tres bandes">
+
+    <!-- Apple Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Escalfament">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>5 Minuts d'Escalfament - Billar 3 Bandes</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>🎱 5 Minuts d'Escalfament</h1>
+        <p class="subtitle">Billar a Tres Bandes</p>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-info">
+            <span id="progress-text">0 de 21 exercicis completats</span>
+            <span id="timer-display">00:00</span>
+        </div>
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- Filter Controls -->
+    <div class="filter-controls">
+        <button class="filter-btn active" data-filter="all">Tots</button>
+        <button class="filter-btn" data-filter="comprovacio">Comprovació</button>
+        <button class="filter-btn" data-filter="sense_efecte">Sense efecte</button>
+        <button class="filter-btn" data-filter="contra_efecte">Contra efecte</button>
+        <button class="filter-btn" data-filter="altres">Altres</button>
+    </div>
+
+    <!-- Exercises Container -->
+    <main class="exercises-container" id="exercises-container">
+        <!-- Exercises will be dynamically inserted here -->
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button id="home-btn" class="nav-btn active">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Inici</span>
+        </button>
+        <button id="random-btn" class="nav-btn">
+            <span class="nav-icon">🎲</span>
+            <span class="nav-label">Aleatori</span>
+        </button>
+        <button id="stats-btn" class="nav-btn">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Estadístiques</span>
+        </button>
+        <button id="settings-btn" class="nav-btn">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Configuració</span>
+        </button>
+    </nav>
+
+    <!-- Modal for Exercise Details -->
+    <div id="exercise-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Exercici #</h2>
+                <button id="modal-close" class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-description"></p>
+                <div class="modal-meta">
+                    <span id="modal-category" class="category-badge"></span>
+                    <span id="modal-difficulty" class="difficulty-stars"></span>
+                </div>
+                <div class="notes-section">
+                    <label for="exercise-notes">Notes personals:</label>
+                    <textarea id="exercise-notes" rows="4" placeholder="Afegeix les teves notes aquí..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-prev" class="btn btn-secondary">← Anterior</button>
+                <button id="modal-complete" class="btn btn-primary">Marcar com completat</button>
+                <button id="modal-next" class="btn btn-secondary">Següent →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Modal -->
+    <div id="stats-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📊 Estadístiques</h2>
+                <button class="modal-close" data-modal="stats-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="stats-content">
+                    <!-- Stats will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/exercises-visual.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registrat amb èxit:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Error en registrar ServiceWorker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2e7d32">
+    <title>Configuració - 5 Minuts d'Escalfament</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>⚙️ Configuració</h1>
+        <p class="subtitle">Billar a Tres Bandes</p>
+    </header>
+
+    <!-- Settings Container -->
+    <div class="settings-container" style="max-width: 800px; margin: 0 auto; padding: 1.5rem;">
+        <!-- Dades -->
+        <section class="settings-section">
+            <h2>💾 Gestió de Dades</h2>
+            <div class="settings-card">
+                <button class="btn btn-primary" onclick="resetProgress()" style="width: 100%; margin-bottom: 0.5rem;">
+                    🔄 Esborrar tot el progrés
+                </button>
+                <p style="font-size: 0.85rem; color: #757575; margin-top: 0.5rem;">
+                    Això eliminarà tots els exercicis completats, notes i estadístiques. L'acció no es pot desfer.
+                </p>
+            </div>
+        </section>
+
+        <!-- Informació -->
+        <section class="settings-section">
+            <h2>ℹ️ Informació de l'App</h2>
+            <div class="settings-card">
+                <p><strong>Versió:</strong> 1.0.0</p>
+                <p><strong>Última actualització:</strong> 2024</p>
+                <p><strong>Exercicis:</strong> 21</p>
+                <p><strong>Mode offline:</strong> ✅ Disponible</p>
+                <p style="margin-top: 1rem;">
+                    <strong>Creat amb:</strong><br>
+                    HTML5, CSS3, JavaScript, SVG
+                </p>
+            </div>
+        </section>
+
+        <!-- Tutorial -->
+        <section class="settings-section">
+            <h2>📖 Com Utilitzar l'App</h2>
+            <div class="settings-card">
+                <h3>Funcionalitats principals:</h3>
+                <ul style="line-height: 1.8;">
+                    <li>📊 <strong>Diagrames interactius:</strong> Cada exercici té un diagrama visual SVG</li>
+                    <li>▶️ <strong>Animacions:</strong> Clica "Animar tir" per veure la trajectòria</li>
+                    <li>✅ <strong>Marcar completats:</strong> Segueix el teu progrés</li>
+                    <li>📝 <strong>Notes personals:</strong> Afegeix observacions a cada exercici</li>
+                    <li>🔍 <strong>Filtres:</strong> Visualitza per categoria</li>
+                    <li>📊 <strong>Estadístiques:</strong> Consulta el teu progrés</li>
+                    <li>💾 <strong>Exportar/Importar:</strong> Sincronitza entre dispositius</li>
+                </ul>
+
+                <h3 style="margin-top: 1.5rem;">Controls:</h3>
+                <ul style="line-height: 1.8;">
+                    <li>👆 <strong>Clic en exercici:</strong> Obre detalls complets</li>
+                    <li>↔️ <strong>Swipe (mòbil):</strong> Navega entre exercicis</li>
+                    <li>⌨️ <strong>Fletxes (teclat):</strong> Anterior/Següent</li>
+                    <li>🔄 <strong>Rotar vista:</strong> Canvia la perspectiva de la taula</li>
+                    <li>🔍 <strong>Ampliar:</strong> Vista detallada del diagrama</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Dreceres -->
+        <section class="settings-section">
+            <h2>⌨️ Dreceres de Teclat</h2>
+            <div class="settings-card">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 0.5rem;"><strong>←</strong></td>
+                        <td style="padding: 0.5rem;">Exercici anterior</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 0.5rem;"><strong>→</strong></td>
+                        <td style="padding: 0.5rem;">Exercici següent</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 0.5rem;"><strong>Espai</strong></td>
+                        <td style="padding: 0.5rem;">Marcar completat (dins modal)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Esc</strong></td>
+                        <td style="padding: 0.5rem;">Tancar modal</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Contacte -->
+        <section class="settings-section">
+            <h2>📧 Contacte i Feedback</h2>
+            <div class="settings-card">
+                <p>Si tens suggeriments, has trobat un error o vols contribuir al projecte:</p>
+                <p style="margin-top: 0.5rem;">
+                    <strong>GitHub:</strong> <a href="#" style="color: #2e7d32;">github.com/billar-3bandes</a>
+                </p>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:billar3b@example.com" style="color: #2e7d32;">billar3b@example.com</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Botó tornar -->
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="index.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+                ← Tornar a l'inici
+            </a>
+        </div>
+    </div>
+
+    <style>
+        .settings-section {
+            margin-bottom: 2rem;
+        }
+
+        .settings-section h2 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .settings-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .settings-card h3 {
+            color: #333;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .settings-card ul {
+            padding-left: 1.5rem;
+        }
+
+        .settings-card p {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #2e7d32;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <script>
+        function resetProgress() {
+            if (confirm('Estàs segur que vols esborrar tot el progrés? Aquesta acció no es pot desfer.')) {
+                if (confirm('Última confirmació: S\'esborraran TOTES les dades. Continuar?')) {
+                    localStorage.clear();
+                    alert('Progrés esborrat correctament. Tornant a l\'inici...');
+                    window.location.href = 'index.html';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

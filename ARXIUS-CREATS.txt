@@ -1,0 +1,191 @@
+========================================
+PWA BILLAR 3 BANDES - ARXIUS CREATS
+========================================
+
+DATA: 2024
+ESTAT: ✅ COMPLETAT
+
+========================================
+ARXIUS PRINCIPALS
+========================================
+
+📄 index.html                    - Pàgina principal de l'aplicació
+📄 settings.html                 - Pàgina de configuració
+📄 manifest.json                 - Manifest PWA per instal·lació
+📄 service-worker.js             - Service Worker per mode offline
+
+========================================
+ESTILS
+========================================
+
+📁 css/
+  📄 styles.css                  - Estils complets amb tema billar i diagrames SVG
+
+========================================
+JAVASCRIPT
+========================================
+
+📁 js/
+  📄 app.js                      - Lògica principal (ExerciseManager)
+  📄 exercises-visual.js         - Dades dels 21 exercicis amb configuració visual
+  📄 billiard-diagrams.js        - Classe TaulaBillar (sistema base SVG)
+  📄 diagram-generator.js        - DiagramGenerator (generació dinàmica)
+  📄 media-manager.js            - MediaManager (gestió multimedia)
+  📄 interactive-study.js        - InteractiveStudy (mode estudi pas a pas)
+  📄 icons.js                    - Icones SVG inline
+
+========================================
+ICONES I RECURSOS
+========================================
+
+📁 icons/
+  📄 icon-generator.html         - Generador interactiu d'icones
+  📄 INSTRUCCIONS.md             - Com crear/obtenir icones PNG
+
+  [A GENERAR PER L'USUARI:]
+  ⚠️ icon-192.png                - Icona 192x192 (usa icon-generator.html)
+  ⚠️ icon-512.png                - Icona 512x512 (usa icon-generator.html)
+
+========================================
+DOCUMENTACIÓ
+========================================
+
+📄 README.md                     - Documentació completa del projecte
+📄 INICI-RAPID.md                - Guia d'inici ràpid
+📄 ARXIUS-CREATS.txt             - Aquest fitxer
+
+========================================
+CARACTERÍSTIQUES IMPLEMENTADES
+========================================
+
+✅ Progressive Web App (PWA) completa
+✅ 21 exercicis d'escalfament amb descripcions
+✅ Diagrames SVG interactius per cada exercici
+✅ Sistema de diamants numerat
+✅ Trajectòries animades
+✅ Indicadors d'efecte visuals
+✅ Punts d'impacte a les bandes
+✅ Seguiment de progrés (localStorage)
+✅ Cronòmetre de sessió
+✅ Estadístiques per categoria
+✅ Notes personals per exercici
+✅ Exportar/Importar dades (JSON)
+✅ Mode offline complet (Service Worker)
+✅ Responsive design (mòbil, tablet, desktop)
+✅ Animacions i transicions
+✅ Haptic feedback (mòbils)
+✅ Swipe gestures (navegació tàctil)
+✅ Keyboard shortcuts
+✅ Filtres per categoria
+✅ Mode aleatori
+✅ Rotar vista del diagrama
+✅ Ampliar diagrama en modal
+✅ Pàgina de configuració
+✅ Totalment en català
+
+========================================
+FUNCIONALITATS VISUALS
+========================================
+
+🎨 Diagrames SVG:
+  - Taula de billar proporcional (2:1)
+  - Boles: Blanca, Groga (#1), Vermella (#3)
+  - Trajectòries amb colors diferents:
+    * Verd: sense efecte
+    * Blau: amb efecte
+    * Vermell: alternativa
+  - Sistema de 7 diamants (bandes llargues)
+  - Sistema de 3 diamants (bandes curtes)
+  - Efecte de brillantor a les boles
+  - Vora de fusta realista
+  - Gradient de tapet verd
+
+🎬 Animacions:
+  - Trajectòria completa animada
+  - Dibuix progressiu del camí
+  - Hover effects
+  - Pulse al completar
+  - Fade in/out
+
+========================================
+TECNOLOGIES UTILITZADES
+========================================
+
+- HTML5 (Estructura semàntica)
+- CSS3 (Variables, Grid, Flexbox, Animations)
+- JavaScript ES6+ (Classes, Modules, Async/Await)
+- SVG (Diagrames vectorials)
+- Service Workers API
+- LocalStorage API
+- Vibration API
+- Touch Events API
+- Intersection Observer API
+
+========================================
+MIDES DEL PROJECTE
+========================================
+
+📊 Línies de codi (aproximat):
+  - HTML: ~350 línies
+  - CSS: ~750 línies
+  - JavaScript: ~2200 línies
+  - Total: ~3300 línies
+
+📦 Arxius:
+  - HTML: 3 fitxers
+  - CSS: 1 fitxer
+  - JavaScript: 7 fitxers
+  - JSON: 1 fitxer
+  - Markdown: 3 fitxers
+  - Total: 15 fitxers + 2 icones a generar
+
+========================================
+PRÒXIMS PASSOS
+========================================
+
+1. ⚠️ IMPORTANT: Genera les icones PNG
+   - Obre: icons/icon-generator.html
+   - Descarrega icon-192.png i icon-512.png
+   - Col·loca-les a la carpeta /icons/
+
+2. Prova l'aplicació:
+   - Obre index.html en el navegador
+   - O executa un servidor HTTP local
+
+3. Instal·la com a PWA:
+   - Cerca la icona d'instal·lació
+   - Afegeix a pantalla d'inici
+
+4. (Opcional) Desplega online:
+   - GitHub Pages
+   - Netlify
+   - Vercel
+
+========================================
+SUPORT I CONTACTE
+========================================
+
+📖 Documentació: README.md
+🚀 Inici ràpid: INICI-RAPID.md
+🐛 Issues: github.com/billar-3bandes (exemple)
+📧 Email: billar3b@example.com (exemple)
+
+========================================
+LLICÈNCIA
+========================================
+
+Domini públic - Lliure d'usar i modificar
+
+========================================
+CRÈDITS
+========================================
+
+Desenvolupat amb Claude Code
+Exercicis basats en els clàssics d'escalfament
+de billar a tres bandes
+
+🎱 Fet amb ❤️ en català
+
+========================================
+FI DE L'ARXIU
+========================================

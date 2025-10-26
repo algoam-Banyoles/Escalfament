@@ -1,0 +1,35 @@
+{
+  "name": "5 Minuts d'Escalfament - Billar Visual",
+  "short_name": "Billar 3B",
+  "description": "Aplicació per practicar els 5 minuts d'escalfament de billar a tres bandes",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#2e7d32",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["sports", "education"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Exercici aleatori",
+      "short_name": "Aleatori",
+      "description": "Obre un exercici aleatori",
+      "url": "/?random=true",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

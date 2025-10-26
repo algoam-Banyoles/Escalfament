@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Diagrames</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .status {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .error { color: red; }
+        .success { color: green; }
+        #test-diagram {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test de Diagrames</h1>
+
+    <div id="status" class="status">
+        <h3>Estat de Càrrega:</h3>
+        <div id="checks"></div>
+    </div>
+
+    <div id="test-diagram">
+        <h3>Diagrama de Prova:</h3>
+        <div id="diagram-container"></div>
+    </div>
+
+    <!-- Scripts en el mateix ordre que index.html -->
+    <script src="js/exercises-visual.js"></script>
+    <script src="js/billiard-diagrams.js"></script>
+    <script src="js/diagram-generator.js"></script>
+    <script src="js/media-manager.js"></script>
+    <script src="js/interactive-study.js"></script>
+    <script src="js/icons.js"></script>
+
+    <script>
+        const checks = document.getElementById('checks');
+
+        function addCheck(name, exists, details = '') {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <span class="${exists ? 'success' : 'error'}">
+                    ${exists ? '✓' : '✗'} ${name}
+                </span>
+                ${details ? `<br><small style="margin-left: 20px;">${details}</small>` : ''}
+            `;
+            checks.appendChild(div);
+        }
+
+        // Comprovar que tot s'ha carregat
+        addCheck('EXERCISES_DATA', typeof EXERCISES_DATA !== 'undefined',
+            EXERCISES_DATA ? `${EXERCISES_DATA.length} exercicis carregats` : 'No carregat');
+
+        addCheck('TaulaBillar', typeof TaulaBillar !== 'undefined');
+        addCheck('DiagramGenerator', typeof DiagramGenerator !== 'undefined');
+        addCheck('MediaManager', typeof MediaManager !== 'undefined');
+        addCheck('InteractiveStudy', typeof InteractiveStudy !== 'undefined');
+
+        // Intentar crear un diagrama de prova
+        try {
+            if (typeof EXERCISES_DATA !== 'undefined' &&
+                typeof DiagramGenerator !== 'undefined' &&
+                EXERCISES_DATA.length > 0) {
+
+                addCheck('Generant diagrama de prova...', true);
+
+                const generator = new DiagramGenerator();
+                const exercici = EXERCISES_DATA[0]; // Primer exercici
+
+                addCheck('Exercici seleccionat', true,
+                    `#${exercici.id}: ${exercici.title}`);
+
+                const diagram = generator.generarDiagrama(exercici);
+
+                if (diagram) {
+                    document.getElementById('diagram-container').appendChild(diagram);
+                    addCheck('Diagrama generat correctament!', true,
+                        'Hauries de veure el diagrama a sota');
+                } else {
+                    addCheck('Error generant diagrama', false, 'generarDiagrama() ha retornat null');
+                }
+            } else {
+                addCheck('No es pot generar diagrama', false,
+                    'Falten dependències o dades');
+            }
+        } catch (error) {
+            addCheck('ERROR', false, error.message);
+            console.error('Error detallat:', error);
+        }
+    </script>
+</body>
+</html>
