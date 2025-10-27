@@ -592,7 +592,10 @@ body {
   border-radius: var(--radius-md);
   transition: transform var(--transition-normal);
   object-fit: contain;
-  max-height: 300px;
+  /* Adaptat per format vertical (600x900px aprox, aspect ratio ~0.67) */
+  max-height: 500px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .exercise-image:hover {
