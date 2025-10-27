@@ -16,12 +16,26 @@ for f in os.listdir(DIR):
         # Les imatges originals són ~464-504px d'amplada x 720px d'alçada
         
         w, h = img.size
-        # Target: generar imatges verticals de 600px d'amplada amb la mateixa relació d'aspecte
+        # Target: generar imatges verticals de 600x900px (dimensions fixes per totes)
         target_width = 600
+        target_height = 900
         aspect_ratio = h / w
-        target_height = int(target_width * aspect_ratio)
+        temp_height = int(target_width * aspect_ratio)
         
-        img = img.resize((target_width, target_height), Image.Resampling.LANCZOS)
+        # Primer redimensionem mantenint l'aspect ratio
+        img = img.resize((target_width, temp_height), Image.Resampling.LANCZOS)
+        
+        # Després apliquem crop o padding per ajustar a 600x900px exactes
+        if temp_height > target_height:
+            # Crop centrat (tallem per dalt i baix)
+            top = (temp_height - target_height) // 2
+            img = img.crop((0, top, target_width, top + target_height))
+        elif temp_height < target_height:
+            # Padding centrat (afegim espai blanc per dalt i baix)
+            new_img = Image.new('RGB', (target_width, target_height), (255, 255, 255))
+            top = (target_height - temp_height) // 2
+            new_img.paste(img, (0, top))
+            img = new_img
         
         if img.mode != 'RGB':
             rgb = Image.new('RGB', img.size, (255,255,255))
