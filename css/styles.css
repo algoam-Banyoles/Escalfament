@@ -272,6 +272,13 @@ body {
   color: var(--color-text);
   margin-bottom: var(--spacing-sm);
   line-height: 1.4;
+  /* Alçada fixa per 2 línies: 1.1rem * 1.4 * 2 = ~3.08rem */
+  min-height: 3.08rem;
+  height: 3.08rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .exercise-description {
@@ -592,7 +599,10 @@ body {
   border-radius: var(--radius-md);
   transition: transform var(--transition-normal);
   object-fit: contain;
-  max-height: 300px;
+  /* Adaptat per format vertical (600x900px aprox, aspect ratio ~0.67) */
+  max-height: 500px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .exercise-image:hover {

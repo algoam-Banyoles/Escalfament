@@ -12,21 +12,30 @@ for f in os.listdir(DIR):
         print(f"{f} -> {out}")
         
         img = Image.open(os.path.join(DIR, f))
-        img = img.rotate(-90, expand=True)
+        # Mantenim format vertical (sense rotar)
+        # Les imatges originals són ~464-504px d'amplada x 720px d'alçada
         
         w, h = img.size
-        if w/h > 2:
-            new_h = 400
-            new_w = int(400 * w/h)
-        else:
-            new_w = 800
-            new_h = int(800 * h/w)
+        # Target: generar imatges verticals de 600x900px (dimensions fixes per totes)
+        target_width = 600
+        target_height = 900
+        aspect_ratio = h / w
+        temp_height = int(target_width * aspect_ratio)
         
-        img = img.resize((new_w, new_h), Image.Resampling.LANCZOS)
+        # Primer redimensionem mantenint l'aspect ratio
+        img = img.resize((target_width, temp_height), Image.Resampling.LANCZOS)
         
-        left = (new_w - 800) // 2
-        top = (new_h - 400) // 2
-        img = img.crop((left, top, left+800, top+400))
+        # Després apliquem crop o padding per ajustar a 600x900px exactes
+        if temp_height > target_height:
+            # Crop centrat (tallem per dalt i baix)
+            top = (temp_height - target_height) // 2
+            img = img.crop((0, top, target_width, top + target_height))
+        elif temp_height < target_height:
+            # Padding centrat (afegim espai blanc per dalt i baix)
+            new_img = Image.new('RGB', (target_width, target_height), (255, 255, 255))
+            top = (target_height - temp_height) // 2
+            new_img.paste(img, (0, top))
+            img = new_img
         
         if img.mode != 'RGB':
             rgb = Image.new('RGB', img.size, (255,255,255))
