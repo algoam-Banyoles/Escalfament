@@ -6,9 +6,6 @@ class ExerciseManager {
     this.exercises = [];
     this.currentFilter = 'all';
     this.currentExerciseId = null;
-    this.timerInterval = null;
-    this.sessionStartTime = null;
-    this.elapsedSeconds = 0;
     this.touchStartX = 0;
     this.touchEndX = 0;
     this.exerciseStats = {};
@@ -42,11 +39,6 @@ class ExerciseManager {
       });
     }
 
-    const savedTime = localStorage.getItem('sessionTime');
-    if (savedTime) {
-      this.elapsedSeconds = parseInt(savedTime, 10);
-    }
-
     const savedStats = localStorage.getItem('exerciseStats');
     if (savedStats) {
       this.exerciseStats = JSON.parse(savedStats);
@@ -64,7 +56,6 @@ class ExerciseManager {
       lastUpdated: new Date().toISOString()
     };
     localStorage.setItem('exerciseState', JSON.stringify(state));
-    localStorage.setItem('sessionTime', this.elapsedSeconds.toString());
     localStorage.setItem('exerciseStats', JSON.stringify(this.exerciseStats));
   }
 
@@ -325,45 +316,11 @@ class ExerciseManager {
         ex.completed = false;
         ex.notes = '';
       });
-      this.elapsedSeconds = 0;
       this.saveStateToStorage();
       this.renderExercises();
       this.updateProgress();
-      this.updateTimer();
       alert('Progrés esborrat correctament.');
     }
-  }
-
-  // Timer de sessió
-  startTimer() {
-    if (this.timerInterval) return;
-
-    this.sessionStartTime = Date.now() - (this.elapsedSeconds * 1000);
-
-    this.timerInterval = setInterval(() => {
-      this.elapsedSeconds = Math.floor((Date.now() - this.sessionStartTime) / 1000);
-      this.updateTimer();
-
-      // Guardar cada 10 segons
-      if (this.elapsedSeconds % 10 === 0) {
-        this.saveStateToStorage();
-      }
-    }, 1000);
-  }
-
-  stopTimer() {
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-      this.timerInterval = null;
-      this.saveStateToStorage();
-    }
-  }
-
-  updateTimer() {
-    const minutes = Math.floor(this.elapsedSeconds / 60);
-    const seconds = this.elapsedSeconds % 60;
-    document.getElementById('timer-display').textContent =
-      `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   }
 
   // Mostrar estadístiques
@@ -381,8 +338,6 @@ class ExerciseManager {
       if (ex.completed) byCategory[ex.category].completed++;
     });
 
-    const minutes = Math.floor(this.elapsedSeconds / 60);
-
     // Exercicis més practicats
     const mostPracticed = Object.entries(this.exerciseStats)
       .sort((a, b) => b[1].timesCompleted - a[1].timesCompleted)
@@ -397,7 +352,6 @@ class ExerciseManager {
       <div style="padding: 1rem;">
         <h3>📊 Resum General</h3>
         <p><strong>Exercicis completats:</strong> ${completed} / ${total} (${percentage}%)</p>
-        <p><strong>Temps de sessió:</strong> ${minutes} minuts</p>
 
         <h3 style="margin-top: 2rem;">📈 Per Categoria</h3>
     `;
@@ -477,10 +431,6 @@ class ExerciseManager {
       this.setActiveNav('home-btn');
     });
 
-    document.getElementById('random-btn').addEventListener('click', () => {
-      this.randomExercise();
-    });
-
     document.getElementById('stats-btn').addEventListener('click', () => {
       this.showStats();
     });
@@ -500,14 +450,6 @@ class ExerciseManager {
           this.toggleComplete(this.currentExerciseId);
         }
       }
-    });
-
-    // Start timer on load
-    this.startTimer();
-
-    // Stop timer on page unload
-    window.addEventListener('beforeunload', () => {
-      this.stopTimer();
     });
 
     // Swipe gestures per modal
@@ -561,8 +503,7 @@ class ExerciseManager {
       version: '1.0',
       exportDate: new Date().toISOString(),
       exercises: this.exercises,
-      stats: this.exerciseStats,
-      sessionTime: this.elapsedSeconds
+      stats: this.exerciseStats
     };
 
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
@@ -596,12 +537,10 @@ class ExerciseManager {
           // Importar dades
           this.exercises = data.exercises;
           this.exerciseStats = data.stats || {};
-          this.elapsedSeconds = data.sessionTime || 0;
 
           this.saveStateToStorage();
           this.renderExercises();
           this.updateProgress();
-          this.updateTimer();
 
           alert('Dades importades correctament!');
           this.closeModal('stats-modal');
